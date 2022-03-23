@@ -3,8 +3,8 @@ const path = require('path');
 const fs = require('fs');
 
 const server= http.createServer((req,res) =>{
-   let filepath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
-   let extname = path.extname(filepath);
+   let filePath = path.join(__dirname, 'public', req.url === '/' ? 'index.html' : req.url);
+   let extname = path.extname(filePath);
    let contentType = 'text/html'
 
    switch(extname){
@@ -25,7 +25,7 @@ const server= http.createServer((req,res) =>{
            break;
 
    }
-   fs.readFile(filepath, (err, content) =>{
+   fs.readFile(filePath, (err, content) =>{
        if(err){
            if(err.code == 'ENOENT'){
                fs.readFile(path.join(__dirname, 'public', '404.html'), (err, content) =>{
